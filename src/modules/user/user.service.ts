@@ -9,7 +9,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class UserService {
 	constructor(private readonly prismaService: PrismaService) {}
 
-	async create(dto: RegisterDto) {
+	async create(dto: RegisterDto): Promise<User> {
 		return this.prismaService.user.create({
 			data: {
 				email: dto.email,

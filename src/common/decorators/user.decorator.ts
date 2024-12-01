@@ -1,7 +1,7 @@
-import { ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { createParamDecorator, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { User } from '@prisma/client';
 
-export const CurrentUser = (ctx: ExecutionContext, data: keyof User) => {
+export const CurrentUser = createParamDecorator((data: keyof User, ctx: ExecutionContext) => {
 	const request = ctx.switchToHttp().getRequest();
 	const user = request.user;
 
@@ -10,4 +10,4 @@ export const CurrentUser = (ctx: ExecutionContext, data: keyof User) => {
 	}
 
 	return data ? user?.[data] : user;
-};
+});
