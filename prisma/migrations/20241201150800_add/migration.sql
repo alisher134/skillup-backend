@@ -8,7 +8,7 @@ CREATE TABLE "users" (
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "avatarPath" TEXT,
-    "roles" "Role" NOT NULL DEFAULT 'STUDENT',
+    "role" "Role" NOT NULL DEFAULT 'STUDENT',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 

@@ -8,23 +8,23 @@ import { getConfigCors } from './config/cors.config';
 import { getSwaggerConfig } from './config/swagger.config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const config = app.get(ConfigService);
+	const app = await NestFactory.create(AppModule);
+	const config = app.get(ConfigService);
 
-  app.use(cookieParser());
+	app.use(cookieParser());
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-    }),
-  );
+	app.useGlobalPipes(
+		new ValidationPipe({
+			transform: true,
+		}),
+	);
 
-  app.setGlobalPrefix('api/v1');
-  app.enableCors(getConfigCors(config));
+	app.setGlobalPrefix('api/v1');
+	app.enableCors(getConfigCors(config));
 
-  getSwaggerConfig(config, app);
+	getSwaggerConfig(app);
 
-  await app.listen(3000);
+	await app.listen(3000);
 }
 
 bootstrap();

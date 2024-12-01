@@ -20,7 +20,7 @@ model User {
   password   String
   avatarPath String?
 
-  roles Role @default(STUDENT)
+  role Role @default(STUDENT)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

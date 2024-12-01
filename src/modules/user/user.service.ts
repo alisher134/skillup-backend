@@ -7,48 +7,48 @@ import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly prismaService: PrismaService) {}
+	constructor(private readonly prismaService: PrismaService) {}
 
-  async create(dto: RegisterDto) {
-    return this.prismaService.user.create({
-      data: {
-        email: dto.email,
-        username: dto.username,
-        password: await this.hashPassword(dto.password),
-        avatarPath: null,
-      },
-    });
-  }
+	async create(dto: RegisterDto) {
+		return this.prismaService.user.create({
+			data: {
+				email: dto.email,
+				username: dto.username,
+				password: await this.hashPassword(dto.password),
+				avatarPath: null,
+			},
+		});
+	}
 
-  findAll(): Promise<User[]> {
-    return this.prismaService.user.findMany();
-  }
+	findAll(): Promise<User[]> {
+		return this.prismaService.user.findMany();
+	}
 
-  findOneById(id: string): Promise<User | null> {
-    return this.prismaService.user.findUnique({
-      where: {
-        id,
-      },
-    });
-  }
+	findOneById(id: string): Promise<User | null> {
+		return this.prismaService.user.findUnique({
+			where: {
+				id,
+			},
+		});
+	}
 
-  findOneByEmail(email: string): Promise<User | null> {
-    return this.prismaService.user.findUnique({
-      where: {
-        email,
-      },
-    });
-  }
+	findOneByEmail(email: string): Promise<User | null> {
+		return this.prismaService.user.findUnique({
+			where: {
+				email,
+			},
+		});
+	}
 
-  delete(id: string): Promise<User | null> {
-    return this.prismaService.user.delete({
-      where: {
-        id,
-      },
-    });
-  }
+	delete(id: string): Promise<User | null> {
+		return this.prismaService.user.delete({
+			where: {
+				id,
+			},
+		});
+	}
 
-  private async hashPassword(password: string): Promise<string> {
-    return await hash(password);
-  }
+	private async hashPassword(password: string): Promise<string> {
+		return await hash(password);
+	}
 }
