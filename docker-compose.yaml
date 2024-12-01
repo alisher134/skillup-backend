@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  skillup-db:
+    image: postgres
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=skillup
+      - POSTGRES_PASSWORD=skillup-admin
+      - POSTGRES_DB=skillup-database
+    volumes:
+      - skillup-db:/var/lib/postgresql/data
+volumes:
+  skillup-db:
