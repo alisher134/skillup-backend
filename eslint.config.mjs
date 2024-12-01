@@ -20,7 +20,7 @@ export default tseslint.config(
     rules: {
       'no-console': 'warn',
       'no-debugger': 'warn',
-      'prettier/prettier': 'error',
+      'prettier/prettier': ['error', { endOfLine: 'auto' }],
       'import/order': [
         'error',
         {
